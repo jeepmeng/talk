@@ -54,10 +54,10 @@ celery_app = Celery(
     broker=vector_config.redis_broker,
     backend=vector_config.redis_backend,
     include=[
-        "task.gen_ques",
+        # "task.gen_ques",
         "task.gen_vector_chain",
         # "task.db_interact",
-        "task.file_parse_pipeline"
+        # "task.file_parse_pipeline"
     ]
 )
 

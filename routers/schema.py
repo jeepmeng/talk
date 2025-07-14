@@ -65,7 +65,20 @@ class SearchRequest(BaseModel):
     use_vector: bool = True
     alpha: float = 0.6  # 权重
 
+# class SearchResult(BaseModel):
+#     id: str
+#     text: str
+#     score: float
+
+
+
+class ScoreDetail(BaseModel):
+    bm25: float
+    vector: float
+
 class SearchResult(BaseModel):
     id: str
-    text: str
+    content: str
     score: float
+    score_detail: ScoreDetail
+    source: str  # "hybrid", "bm25", "vector"

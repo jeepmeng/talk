@@ -17,7 +17,7 @@ from routers.schema import (
 router = APIRouter()
 
 
-@router.post("/search", response_model=List[SearchResult])
+@router.post("/es_hybrid_search", response_model=List[SearchResult])
 async def hybrid_search_api(request: SearchRequest):
     tasks = []
     if request.use_bm25:
@@ -31,5 +31,8 @@ async def hybrid_search_api(request: SearchRequest):
         tasks.append(asyncio.sleep(0, result=[]))
 
     bm25_results, vector_results = await asyncio.gather(*tasks)
+    print("🎯 vector 原始得分:")
+    for r in vector_results:
+        print(f"{r['id']} -> {r['score']}")
     merged = merge_results(bm25_results, vector_results, alpha=request.alpha)
     return merged
