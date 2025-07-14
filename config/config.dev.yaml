@@ -21,8 +21,9 @@ vector_service:
 
 
 elasticsearch:
-  host: http://localhost:9200
-  index_name: knowledge_base
+  host: "http://localhost:9200"
+  knowledge_base: "knowledge_base"
+  question_base: "question_base"
 
 session_cache:
   redis_url: redis://localhost:6379/2

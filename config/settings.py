@@ -26,11 +26,18 @@ class VectorConfig(BaseModel):
     redis_broker: str
     redis_backend: str
 
+
+class EsConfig(BaseModel):
+    host: str
+    knowledge_base: str
+    question_base: str
+
 # ✅ 顶层配置结构
 class Settings(BaseModel):
     env: str
     wmx_database: DBConfig
     vector_service: VectorConfig
+    elasticsearch: EsConfig
 
 # ✅ 配置加载函数
 def load_config() -> Settings:
