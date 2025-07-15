@@ -40,9 +40,10 @@ async def get_history_by_session(talk_id: int) -> List[dict]:
         history = []
         # print(type(rows))
         for row in rows:
-            print(row)
+            # print(row)
             history.append({"role": "user", "content": row["input_content"]})
             history.append({"role": "assistant", "content": row["output_content"]})
+        print('history-------------------',history)
         return history
         # return [dict(row) for row in reversed(rows)]
 
