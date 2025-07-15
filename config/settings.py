@@ -8,7 +8,10 @@ load_dotenv(find_dotenv())  # 自动向上查找最近的 .env
 
 
 ENV = os.getenv("ENV", "dev")
-
+# ✅ Redis 对话缓存配置
+class SessionCacheConfig(BaseModel):
+    redis_url: str
+    expire_seconds: int
 
 
 # ✅ 数据库配置
@@ -38,6 +41,7 @@ class Settings(BaseModel):
     wmx_database: DBConfig
     vector_service: VectorConfig
     elasticsearch: EsConfig
+    session_cache: SessionCacheConfig
 
 # ✅ 配置加载函数
 def load_config() -> Settings:

@@ -35,4 +35,5 @@ async def hybrid_search_api(request: SearchRequest):
     for r in vector_results:
         print(f"{r['id']} -> {r['score']}")
     merged = merge_results(bm25_results, vector_results, alpha=request.alpha)
-    return merged
+    # return merged
+    return [SearchResult(**item) for item in merged]  # ✅ 保证结构

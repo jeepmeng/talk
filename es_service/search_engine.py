@@ -127,9 +127,12 @@ def merge_results(bm25_results, vector_results, alpha: float = 0.6):
     bm25_results = aggregate_max_by_id(bm25_results)
     vector_results = aggregate_max_by_id(vector_results)
 
+    # ✅ bm25 做归一化
     bm25_norm = normalize(bm25_results)
-    vector_norm = normalize(vector_results)
-    all_ids = set(bm25_norm) | set(vector_norm)
+
+    # ✅ vector 保持原始得分（不要归一化）
+    vector_raw = {r["id"]: r["score"] for r in vector_results}
+    all_ids = set(bm25_norm) | set(vector_raw)
 
     # 收集原始文本
     id_to_text = {
@@ -140,7 +143,7 @@ def merge_results(bm25_results, vector_results, alpha: float = 0.6):
     merged = []
     for _id in all_ids:
         b_score = bm25_norm.get(_id, 0.0)
-        v_score = vector_norm.get(_id, 0.0)
+        v_score = vector_raw.get(_id, 0.0)
         final_score = alpha * b_score + (1 - alpha) * v_score
 
         if b_score > 0 and v_score > 0:
