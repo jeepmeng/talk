@@ -35,6 +35,10 @@ class EsConfig(BaseModel):
     knowledge_base: str
     question_base: str
 
+class Deepseek(BaseModel):
+    api_key: str
+    base_url: str
+
 # ✅ 顶层配置结构
 class Settings(BaseModel):
     env: str
@@ -42,6 +46,7 @@ class Settings(BaseModel):
     vector_service: VectorConfig
     elasticsearch: EsConfig
     session_cache: SessionCacheConfig
+    deepseek: Deepseek
 
 # ✅ 配置加载函数
 def load_config() -> Settings:

@@ -30,5 +30,9 @@ session_cache:
   expire_seconds: 3600
 
 llm:
-  api_key: "esk-3cd962207189494f872bdec8394a1ff"
+  api_key: "sk-3aad58df7dc442b6995921263f6c953f"
+  base_url: "https://api.deepseek.com"
+
+deepseek:
+  api_key: "sk-3aad58df7dc442b6995921263f6c953f"
   base_url: "https://api.deepseek.com"

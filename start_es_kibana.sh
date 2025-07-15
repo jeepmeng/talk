@@ -5,7 +5,7 @@ ES_IMAGE="es-8.13.2-ik"
 KIBANA_IMAGE="docker.elastic.co/kibana/kibana:8.13.2"
 
 # ✅ 定义宿主机快照目录
-HOST_BACKUP_DIR="/Users/liufucong/Downloads/es_data_new/backup"
+HOST_BACKUP_DIR="/Users/liufucong/Downloads/es_data_new/backup" #本地挂载路径，需要修改
 
 # ✅ 创建备份目录（如果不存在）
 mkdir -p "$HOST_BACKUP_DIR"
